@@ -1,0 +1,18 @@
+{
+    "cSpell.words": [
+        "chrono",
+        "rusqlite"
+    ],
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "localhost",
+            "database": "todos",
+            "username": "postgres",
+            "password": "postgres"
+        }
+    ]
+}

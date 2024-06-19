@@ -1,0 +1,35 @@
+name: Docker
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build-push:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            tag: latest
+          # - os: macos-latest
+          #   tag: latest-arm
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: aidanwallace/rust-todo:${{ matrix.tag }}

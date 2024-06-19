@@ -1,0 +1,11 @@
+[package]
+name = "todo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = { version = "0.4.38", features = ["serde"] }
+tokio = { version = "1", features = ["full"] }
+clap = { version = "4.0.32", features = ["derive"] }
+rusqlite = { version = "0.31.0", features = ["bundled"] }
+dotenv = "0.15.0"
