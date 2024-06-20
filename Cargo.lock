@@ -473,6 +473,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "rust-todos"
+version = "0.1.2"
+dependencies = [
+ "chrono",
+ "clap",
+ "dotenv",
+ "rusqlite",
+ "tokio",
+]
+
+[[package]]
 name = "rustc-demangle"
 version = "0.1.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -544,17 +555,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
-]
-
-[[package]]
-name = "todo"
-version = "0.1.0"
-dependencies = [
- "chrono",
- "clap",
- "dotenv",
- "rusqlite",
- "tokio",
 ]
 
 [[package]]

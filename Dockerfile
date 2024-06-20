@@ -11,6 +11,6 @@ FROM gcr.io/distroless/cc-debian12
 
 ENV TODO_DATABASE_STRING="/data/todo-db.db"
 
-COPY --from=build-env /app/target/release/todo /
+COPY --from=build-env /app/target/release/rust-todos /
 
-ENTRYPOINT ["./todo"]
+ENTRYPOINT ["./rust-todos"]

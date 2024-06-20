@@ -1,6 +1,6 @@
 #!/bin/bash
 
-registry="aidanwallace/rust-todo"
+registry="aidanwallace/rust-todos"
 tag="latest"
 
 if [ $(uname -m) == "arm64" ]; then

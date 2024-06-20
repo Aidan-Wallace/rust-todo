@@ -1,21 +1,25 @@
 # Rust Todo cli app
 
+![GitHub All Releases][badge-1] ![Crates.io][badge-2] ![Docker Pulls][badge-3]
+
+A simple rust cli tool for managing todos
+
 ## Implements
 
 - `sqlite` using [`rusqlite`](https://crates.io/crates/rusqlite) crate
 
 ## Usage
 
-`todo <command> <args>`
+`rust-todos <command> <args>`
 
 ### commands
 
-| command | description                                            | example             |
-| ------- | ------------------------------------------------------ | ------------------- |
-| [null]  | list current todos                                     | todo                |
-| help    | Display help menu                                      | todo help           |
-| add     | Add a todo                                             | todo add do laundry |
-| done    | Complete todos by index. (get index by running `todo`) | todo done 1 5       |
+| command | description                                                  | example                   |
+| ------- | ------------------------------------------------------------ | ------------------------- |
+| [null]  | list current todos                                           | rust-todos                |
+| help    | Display help menu                                            | rust-todos help           |
+| add     | Add a todo                                                   | rust-todos add do laundry |
+| done    | Complete todos by index. (get index by running `rust-todos`) | rust-todos done 1 5       |
 
 ## run app
 
@@ -29,8 +33,12 @@ cargo run help
 
 ```sh
 # build image
-docker build -t aidanwallace/rust-todo .
+docker build -t aidanwallace/rust-todos .
 
 # run image
-docker run --rm -it -v ./data:/data aidanwallace/rust-todo help
+docker run --rm -it -v ./data:/data aidanwallace/rust-todos help
 ```
+
+[badge-1]: https://img.shields.io/github/downloads/aidan-wallace/rust-todos/total?label=GitHub%20Downloads
+[badge-2]: https://img.shields.io/crates/d/rust-todos?label=Cargo%20Downloads
+[badge-3]: https://img.shields.io/docker/pulls/aidanwallace/rust-todos
