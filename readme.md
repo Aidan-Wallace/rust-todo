@@ -32,5 +32,5 @@ cargo run help
 docker build -t aidanwallace/rust-todo .
 
 # run image
-docker run --rm -v ./data:/data aidanwallace/rust-todo help
+docker run --rm -it -v ./data:/data aidanwallace/rust-todo help
 ```
