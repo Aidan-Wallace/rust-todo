@@ -1,0 +1,11 @@
+#!/bin/bash
+
+registry="aidanwallace/rust-todo"
+tag="latest"
+
+if [ $(uname -m) == "arm64" ]; then
+    tag="latest-arm"
+fi
+
+docker build -t $registry:$tag .
+docker push $registry:$tag
