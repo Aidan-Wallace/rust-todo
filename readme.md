@@ -2,7 +2,7 @@
 
 ## Implements
 
-- `sqlite` using [`rusqlite`](https://crates.io/crates/rusqlite) create
+- `sqlite` using [`rusqlite`](https://crates.io/crates/rusqlite) crate
 
 ## Usage
 
