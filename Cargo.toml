@@ -2,6 +2,13 @@
 name = "todo"
 version = "0.1.0"
 edition = "2021"
+authors = ["Aidan Wallace <aidanwallacedev@gmail.com>"]
+homepage = "https://github.com/aidan-wallace/rust-todo"
+repository = "https://github.com/aidan-wallace/rust-todo"
+keywords = ["todo","todos", "cli"]
+license = "MIT"
+readme = "readme.md"
+description = "A simple rust cli tool for managing todos"
 
 [dependencies]
 chrono = { version = "0.4.38", features = ["serde"] }
