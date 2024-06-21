@@ -7,34 +7,34 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'todo'",
+            "name": "Debug executable 'rust-todos'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=todo",
-                    "--package=todo"
+                    "--bin=rust-todos",
+                    "--package=rust-todos"
                 ],
                 "filter": {
-                    "name": "todo",
+                    "name": "rust-todos",
                     "kind": "bin"
                 }
             },
-            "args": ["add", "write", "essay"],
+            "args": ["--fill", "add", "write", "essay"],
             "cwd": "${workspaceFolder}"
         },
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'todo'",
+            "name": "Debug unit tests in executable 'rust-todos'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=todo",
-                    "--package=todo"
+                    "--bin=rust-todos",
+                    "--package=rust-todos"
                 ],
                 "filter": {
-                    "name": "todo",
+                    "name": "rust-todos",
                     "kind": "bin"
                 }
             },

@@ -6,7 +6,7 @@ mod todo;
 mod utils;
 
 use crate::todo::{add_todo, clear_todos, list_todos, remove_todo};
-use clap::{Arg, Command};
+use clap::{arg, Arg, ArgAction, Command};
 use db::{data_repository::DataRepo, database::Db, repository::Repository};
 use dotenv::dotenv;
 use std::env;
@@ -25,11 +25,14 @@ fn main() {
             Err(e) => panic!("{:?}", e),
         }
     };
-    let _ = db.setup(true);
+
+    let args = parse_args();
+
+    let mut load_fake_data = args.get_flag("fill");
+    db.setup(load_fake_data);
 
     let data_repo = DataRepo::new(db);
 
-    let args = parse_args();
     match args.subcommand() {
         Some(("add", sub_matches)) => {
             let task: String = sub_matches
@@ -67,6 +70,12 @@ fn parse_args() -> clap::ArgMatches {
         .version(env!("CARGO_PKG_VERSION"))
         .author("Aidan Wallace aidanwallacedev@gmail.com")
         .about("Simple Rust Todo cli app")
+        .arg(
+            Arg::new("fill")
+                .long("fill")
+                .help("Fill in the details")
+                .action(ArgAction::SetTrue),
+        )
         .subcommand(
             Command::new("add").about("Add a new task").arg(
                 Arg::new("TASK")

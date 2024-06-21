@@ -22,6 +22,12 @@ A simple rust cli tool for managing todos
 | done    | Complete todos by index. (get index by running `rust-todos`) | rust-todos done 1 5       |
 | clear   | Clear all todos                                              | rust-todos clear          |
 
+### options
+
+| option | description                 | example           |
+| ------ | --------------------------- | ----------------- |
+| --fill | fill the db with fake todos | rust-todos --fill |
+
 ## run app
 
 ### cargo
