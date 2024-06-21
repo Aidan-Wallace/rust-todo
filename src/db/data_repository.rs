@@ -68,6 +68,13 @@ impl Repository<Data> for DataRepo {
 
         Ok(())
     }
+
+    fn remove_all(&self) -> Result<()> {
+        let sql = "DELETE FROM todos";
+        self.db.conn.execute(sql, rusqlite::params![])?;
+
+        Ok(())
+    }
 }
 
 fn timestamp_to_utc(ts: i64) -> Option<DateTime<Utc>> {

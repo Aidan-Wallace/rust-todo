@@ -5,7 +5,7 @@ mod db;
 mod todo;
 mod utils;
 
-use crate::todo::{add_todo, list_todos, remove_todo};
+use crate::todo::{add_todo, clear_todos, list_todos, remove_todo};
 use clap::{Arg, Command};
 use db::{data_repository::DataRepo, database::Db, repository::Repository};
 use dotenv::dotenv;
@@ -17,8 +17,7 @@ const DATE_FORMAT: &str = "%Y/%m/%d %H:%M:%S";
 fn main() {
     dotenv().ok();
 
-    let db_str =
-        utils::get_data_folder().expect("something went wrong when getting app data folder");
+    let db_str = utils::get_db_string().expect("something went wrong when getting app data folder");
 
     let db = {
         match Db::connect(&db_str) {
@@ -56,6 +55,9 @@ fn main() {
 
             remove_todo(&data_repo, parsed_integers);
         }
+        Some(("clear", sub_matches)) => {
+            clear_todos(&data_repo);
+        }
         _ => list_todos(&data_repo),
     }
 }
@@ -81,6 +83,7 @@ fn parse_args() -> clap::ArgMatches {
                     .required(true),
             ),
         )
+        .subcommand(Command::new("clear").about("Clear all todos"))
         .get_matches();
 
     matches

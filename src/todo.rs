@@ -88,6 +88,10 @@ pub fn remove_todo(repo: &DataRepo, parsed_integers: Vec<i32>) {
     }
 }
 
+pub fn clear_todos(repo: &DataRepo) {
+    repo.remove_all();
+}
+
 fn parse_custom_date(date_str: &str) -> Result<DateTime<Local>, ParseError> {
     let naive_date_time = NaiveDateTime::parse_from_str(date_str, DATE_FORMAT)?;
     Ok(Local.from_utc_datetime(&naive_date_time))
