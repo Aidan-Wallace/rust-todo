@@ -5,8 +5,8 @@ mod db;
 mod todo;
 mod utils;
 
-use crate::todo::{add_todo, list_todos, remove_todo};
-use clap::{Arg, Command};
+use crate::todo::{add_todo, clear_todos, list_todos, remove_todo};
+use clap::{arg, Arg, ArgAction, Command};
 use db::{data_repository::DataRepo, database::Db, repository::Repository};
 use dotenv::dotenv;
 use std::env;
@@ -17,8 +17,7 @@ const DATE_FORMAT: &str = "%Y/%m/%d %H:%M:%S";
 fn main() {
     dotenv().ok();
 
-    let db_str =
-        utils::get_data_folder().expect("something went wrong when getting app data folder");
+    let db_str = utils::get_db_string().expect("something went wrong when getting app data folder");
 
     let db = {
         match Db::connect(&db_str) {
@@ -26,11 +25,14 @@ fn main() {
             Err(e) => panic!("{:?}", e),
         }
     };
-    let _ = db.setup(true);
+
+    let args = parse_args();
+
+    let mut load_fake_data = args.get_flag("fill");
+    db.setup(load_fake_data);
 
     let data_repo = DataRepo::new(db);
 
-    let args = parse_args();
     match args.subcommand() {
         Some(("add", sub_matches)) => {
             let task: String = sub_matches
@@ -56,6 +58,9 @@ fn main() {
 
             remove_todo(&data_repo, parsed_integers);
         }
+        Some(("clear", sub_matches)) => {
+            clear_todos(&data_repo);
+        }
         _ => list_todos(&data_repo),
     }
 }
@@ -65,6 +70,12 @@ fn parse_args() -> clap::ArgMatches {
         .version(env!("CARGO_PKG_VERSION"))
         .author("Aidan Wallace aidanwallacedev@gmail.com")
         .about("Simple Rust Todo cli app")
+        .arg(
+            Arg::new("fill")
+                .long("fill")
+                .help("Fill in the details")
+                .action(ArgAction::SetTrue),
+        )
         .subcommand(
             Command::new("add").about("Add a new task").arg(
                 Arg::new("TASK")
@@ -81,6 +92,7 @@ fn parse_args() -> clap::ArgMatches {
                     .required(true),
             ),
         )
+        .subcommand(Command::new("clear").about("Clear all todos"))
         .get_matches();
 
     matches

@@ -24,14 +24,14 @@ impl Db {
 
         if load_fake_data {
             self.conn.execute(
-                "insert into todos(id, name, date_added) values
-                    (1, 'do laundry',           1718327834),
-                    (2, 'take out the trash',   1718327834),
-                    (3, 'clean car',            1718327834),
-                    (5, 'clean room',           1718327834),
-                    (6, 'do the dishes',        1718328271),
-                    (8, 'do the thing',         1718328499),
-                    (9, 'write essay',          1718329485)",
+                "insert into todos(id, name, date_added, due_date) values
+                    (1, 'do laundry',           1718327834, 1720678389),
+                    (2, 'take out the trash',   1718327834, 1749297337),
+                    (3, 'clean car',            1718327834, 1749297112),
+                    (5, 'clean room',           1718327834, 1749297274),
+                    (6, 'do the dishes',        1718682009, 1718682009),
+                    (8, 'do the thing',         1718328499, 1749297372),
+                    (9, 'write essay',          1718329485, 1749297723)",
                 (),
             )?;
         }

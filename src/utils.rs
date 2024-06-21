@@ -20,7 +20,7 @@ pub fn get_user_input(message: &str) -> String {
 /// Get the folder to store app data. Uses `TODO_DATABASE_STRING` if envvar is set.
 /// If not it resorts to creating an app data folder in the users root directory.
 /// If that fails, it uses the local directory
-pub fn get_data_folder() -> std::io::Result<String> {
+pub fn get_db_string() -> std::io::Result<String> {
     let db_path = if let Ok(env_path) = env::var("TODO_DATABASE_STRING") {
         env_path
     } else {
