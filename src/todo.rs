@@ -1,4 +1,5 @@
 use chrono::{DateTime, Local, NaiveDateTime, ParseError, TimeZone};
+use colored::Colorize;
 use std::collections::HashSet;
 use std::process::exit;
 
@@ -14,17 +15,24 @@ pub fn list_todos(db: &DataRepo) {
     };
 
     for (index, todo) in data.iter().enumerate() {
-        // let x = todo.due_date_local(DATE_FORMAT);
+        let due_date = match todo.due_date_local(DATE_FORMAT) {
+            Some(d) => format!(" | {}: {}", "due".blue(), d),
+            None => " | ".to_string(),
+        };
+
+        let overdue = todo
+            .due_date
+            .map_or(false, |parsed_due_date| parsed_due_date < Local::now());
+
         println!(
-            "{}",
-            format!(
-                // "{:>3} | {:>20} | created: {} | due: {}",
-                "{:>3} | {:>20} | created: {}",
-                index,
-                todo.name,
-                todo.date_added_local().format(DATE_FORMAT),
-                // x
-            )
+            "{:>3} | {:<20} | {}: {}{:<27} | {}: {:<5} |",
+            index.to_string().bold(),
+            todo.name,
+            "created".blue(),
+            todo.date_added_local().format(DATE_FORMAT),
+            due_date,
+            "overdue".blue(),
+            overdue
         );
     }
 
