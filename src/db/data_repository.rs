@@ -12,10 +12,6 @@ impl Repository<Data> for DataRepo {
         Self { db }
     }
 
-    fn fetch_first_record(&self) -> Result<Data, rusqlite::Error> {
-        todo!();
-    }
-
     fn insert(&self, data: data::Data) -> Result<()> {
         let sql = "insert into todos (name, date_added, due_date) values (?1, ?2, ?3)";
 

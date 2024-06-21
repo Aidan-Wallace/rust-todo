@@ -1,4 +1,4 @@
-#![allow(unused)]
+// #![allow(unused)]
 
 mod data;
 mod db;
@@ -11,11 +11,14 @@ use db::{data_repository::DataRepo, database::Db, repository::Repository};
 use dotenv::dotenv;
 use std::env;
 
+const APP_NAME: &str = "rust-todos";
 const DATE_FORMAT: &str = "%Y/%m/%d %H:%M:%S";
 
 fn main() {
     dotenv().ok();
-    let db_str = env::var("TODO_DATABASE_STRING").expect("TODO_DATABASE_STRING must be set.");
+
+    let db_str =
+        utils::get_data_folder().expect("something went wrong when getting app data folder");
 
     let db = {
         match Db::connect(&db_str) {
