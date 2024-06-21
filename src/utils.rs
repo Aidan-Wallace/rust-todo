@@ -1,8 +1,6 @@
-use std::{env, io, path::PathBuf};
-
-use home::home_dir;
-
 use crate::APP_NAME;
+use home::home_dir;
+use std::{env, io, path::PathBuf};
 
 pub fn get_user_input(message: &str) -> String {
     println!("{}", message);
