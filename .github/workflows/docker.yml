@@ -35,4 +35,3 @@ jobs:
           file: ./Dockerfile
           push: ${{ github.event_name != 'pull_request' && contains(fromJson('["push", "release"]'), github.event_name) }}
           tags: aidanwallace/rust-todos:${{ matrix.tag }}
-
