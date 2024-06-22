@@ -2,7 +2,9 @@ name: Docker
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build-push:
@@ -31,5 +33,5 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          push: ${{ contains(fromJson('["push", "release"]'), github.event_name) }}
+          push: ${{ github.event_name != 'pull_request' && contains(fromJson('["push", "release"]'), github.event_name) }}
           tags: aidanwallace/rust-todos:${{ matrix.tag }}
