@@ -18,3 +18,5 @@ rusqlite = { version = "0.31.0", features = ["bundled"] }
 dotenv = "0.15.0"
 home = "0.5.9"
 colored = "2.1.0"
+log = "0.4"
+log4rs = "1.2"
