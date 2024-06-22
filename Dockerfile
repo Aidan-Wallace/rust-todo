@@ -2,8 +2,8 @@ FROM rust:1.79 as build-env
 
 WORKDIR /app
 
-#COPY Cargo.* .
-#COPY src ./src
+COPY Cargo.* .
+COPY src ./src
 
 RUN cargo build --release
 
